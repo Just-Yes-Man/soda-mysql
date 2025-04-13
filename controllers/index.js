@@ -73,9 +73,27 @@ const getAllRefrescos = async (req, res) => {
     }
 };
 
+
+const getRefresco = async (req, res) => {
+    console.log('updating Refresco...');
+
+    try {
+        const refresco = await models.Refresco.findOne({ where: { id: req.params.id } });
+        if (!refresco) {
+            return res.status(404).json({ "error": req.params.id + " no existe" });
+        }
+
+        return res.status(200).json({ "refresco": refresco });
+    }
+    catch (error) {
+        return res.status(500).send({ error: error.message });
+    }
+};
+
 module.exports = {
     createRefresco,
     getAllRefrescos,
     deleteRefresco,
-    updateRefresco
+    updateRefresco,
+    getRefresco
 };
