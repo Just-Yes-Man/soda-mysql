@@ -58,6 +58,8 @@ const updateRefresco = async (req, res) => {
     }
 };
 
+
+
 const getAllRefrescos = async (req, res) => {
     console.log('getting Refrescos');
 
@@ -80,7 +82,7 @@ const getRefresco = async (req, res) => {
     try {
         const refresco = await models.Refresco.findOne({ where: { id: req.params.id } });
         if (!refresco) {
-            return res.status(404).json({ "error": req.params.id + " no existe" });
+            return res.status(200).json({ "error": req.params.id + " no existe" });
         }
 
         return res.status(200).json({ "refresco": refresco });
